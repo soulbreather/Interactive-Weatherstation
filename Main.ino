@@ -14,10 +14,16 @@ const String url = "/data/2.5/weather?q=Moscow&units=metric&appid=da4b275dfea6fd
 const size_t capacity = JSON_ARRAY_SIZE(1) + 2 * JSON_OBJECT_SIZE(1) + 2 * JSON_OBJECT_SIZE(2) + JSON_OBJECT_SIZE(4) + JSON_OBJECT_SIZE(5) + JSON_OBJECT_SIZE(6) + JSON_OBJECT_SIZE(14);
 DynamicJsonDocument doc(capacity);
 
+int water_pump = 5;
+int fan = 6;
+int led = 7;
+
 void setup()
 {
     Serial.begin(115200);
     delay(10);
+    pinMode(water_pump, OUTPUT);
+    pinMode(fan, OUTPUT);
     pinMode(led, OUTPUT);
 }
 
@@ -91,6 +97,8 @@ void loop()
             Serial.println("Rain: " + String(rain)) + " mm";
             Serial.println("Clouds: " + String(clouds)) + " %";
         }
+
+        float fan_speed;
     }
     digitalWrite(led, HIGH);
     delay(600000);
